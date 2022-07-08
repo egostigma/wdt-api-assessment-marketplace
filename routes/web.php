@@ -27,5 +27,14 @@ $router->group(["prefix" => "api", "as" => "api"], function () use ($router) {
                 $router->get("/", ["as" => "index", "uses" => "AuthController@index"]);
             });
         });
+
+        $router->group(["middleware" => "auth.api"], function () use ($router) {
+            $router->group(["prefix" => "merchant", "namespace" => "Merchant", "as" => "merchant"], function () use ($router) {
+                $router->get("/", ["as" => "index", "uses" => "MerchantController@index"]);
+                $router->post("/", ["as" => "store", "uses" => "MerchantController@store"]);
+                $router->put("/{id}", ["as" => "update", "uses" => "MerchantController@update"]);
+                $router->delete("/{id}", ["as" => "delete", "uses" => "MerchantController@delete"]);
+            });
+        });
     });
 });

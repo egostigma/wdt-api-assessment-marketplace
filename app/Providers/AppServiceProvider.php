@@ -6,6 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function boot()
+    {
+        \Carbon\Carbon::setLocale(config('app.locale'));
+    }
+
     /**
      * Register any application services.
      *
