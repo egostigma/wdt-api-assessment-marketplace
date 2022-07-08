@@ -4,3 +4,5 @@ build:
   config:
     PHP_VERSION: 7.4.30
     NODE_VERSION: 16.15.1
+run:
+  web: php artisan serve --host=0.0.0.0 --port=$PORT
