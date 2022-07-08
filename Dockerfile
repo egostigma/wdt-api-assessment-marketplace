@@ -55,7 +55,6 @@ COPY . /var/www
 RUN composer update
 RUN composer install --optimize-autoloader --no-dev
 RUN npm install
-RUN php artisan migrate
 
 # Clean the image
 RUN apt-get remove -qq -y pkg-config build-essential \
