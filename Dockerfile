@@ -2,8 +2,8 @@
 ARG NODE_VERSION
 ARG PHP_VERSION
 
-FROM node:$(NODE_VERSION) AS node
-FROM php:$(PHP_VERSION)-fpm
+FROM node:${NODE_VERSION} AS node
+FROM php:${PHP_VERSION}-fpm
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
