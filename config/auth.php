@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -13,8 +12,8 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => env('AUTH_GUARD', 'api'),
+    "defaults" => [
+        "guard" => env("AUTH_GUARD", "api"),
     ],
 
     /*
@@ -34,14 +33,14 @@ return [
     |
     */
 
-    'guards' => [
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users'
+    "guards" => [
+        "api" => [
+            "driver" => "passport",
+            "provider" => "users",
         ],
-        'client' => [
-            'driver' => 'session',
-            'provider' => 'client',
+        "client" => [
+            "driver" => "session",
+            "provider" => "client",
         ],
     ],
 
@@ -62,11 +61,11 @@ return [
     |
     */
 
-    'providers' => [
-       'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class
-        ]
+    "providers" => [
+        "users" => [
+            "driver" => "eloquent",
+            "model" => App\Models\User::class,
+        ],
     ],
 
     /*
@@ -88,8 +87,16 @@ return [
     |
     */
 
-    'passwords' => [
-        //
+    "passwords" => [
+        "users" => [
+            "provider" => "users",
+            "table" => "password_resets",
+            "expire" => 2880,
+            // "throttle" => 60,
+        ],
     ],
-
+    "password_timeout" => 10800,
+    "verification" => [
+        "expire" => 60 * 6,
+    ],
 ];

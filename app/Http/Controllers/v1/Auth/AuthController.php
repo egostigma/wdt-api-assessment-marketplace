@@ -23,6 +23,32 @@ class AuthController extends ApiControllerV1
         return $this->callFunction($func);
     }
 
+    public function update()
+    {
+        $func = function () {
+            $this->validate(request(), [
+                "name" => "required",
+                "phone" => "required|unique:users,phone," . auth()->user()->id,
+                "address" => "required",
+                "password" => "confirmed",
+            ]);
+
+            $input = request()->all();
+            $input["password"] = Hash::make($input["password"]);
+            auth()->user()->name = request("name");
+            auth()->user()->phone = request("phone");
+            auth()->user()->address = request("address");
+            auth()->user()->password = $input["password"];
+            auth()
+                ->user()
+                ->save();
+
+            $this->data = auth()->user();
+        };
+
+        return $this->callFunction($func);
+    }
+
     public function register()
     {
         $func = function () {

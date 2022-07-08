@@ -14,11 +14,8 @@ class AddPhoneColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table("users", function (Blueprint $table) {
-            $table
-                ->string("phone", 20)
-                ->after("email")
-                ->unique()
-                ->index();
+            $table->string("phone", 20)->after("email")->unique()->index();
+            $table->text("address")->after("phone");
         });
     }
 
@@ -32,6 +29,7 @@ class AddPhoneColumnToUsersTable extends Migration
         Schema::table("users", function (Blueprint $table) {
             $table->dropIndex(["phone"]);
             $table->dropColumn("phone");
+            $table->dropColumn("address");
         });
     }
 }

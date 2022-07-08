@@ -8,7 +8,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        \Carbon\Carbon::setLocale(config('app.locale'));
+        \Carbon\Carbon::setLocale(config("app.locale"));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,14 +19,20 @@ $router->get("/", function () use ($router) {
     return $router->app->version();
 });
 
+
 $router->group(["prefix" => "api", "as" => "api"], function () use ($router) {
     $router->group(["prefix" => "v1", "namespace" => "v1", "as" => "v1"], function () use ($router) {
         $router->group(["prefix" => "auth", "namespace" => "Auth", "as" => "auth"], function () use ($router) {
             $router->post("register", ["as" => "register", "uses" => "AuthController@register"]);
             $router->post("login", ["as" => "login", "uses" => "AuthController@login"]);
 
+            $router->post("email/resend", ["as" => "verification.resend", "uses" => "VerificationController@resend"]);
+            $router->post("password/reset-request", ["as" => "password.email", "uses" => "ForgotPasswordController@sendResetLinkEmail"]);
+            $router->post("password/reset", [ "as" => "password.reset", "uses" => "ResetPasswordController@reset" ]);
+
             $router->group(["middleware" => "auth.api"], function () use ($router) {
                 $router->get("/", ["as" => "index", "uses" => "AuthController@index"]);
+                $router->put("/", ["as" => "update", "uses" => "AuthController@update"]);
             });
         });
 
