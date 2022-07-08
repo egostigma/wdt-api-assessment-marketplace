@@ -62,7 +62,7 @@ $app->singleton(
 $app->configure('app');
 $app->configure('auth');
 $app->configure('mail');
-$app->configure('passport');
+// $app->configure('passport');
 $app->configure('services');
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
