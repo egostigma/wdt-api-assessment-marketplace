@@ -16,11 +16,13 @@ class MerchantController extends ApiControllerV1
     public function index()
     {
         $func = function () {
-            foreach (auth()->user()->merchants as $merchant) {
+            $merchants = UserMerchant::where("user_id", auth()->user()->id)->paginate(request("perPage") ?? 10);
+
+            foreach ($merchants as $merchant) {
                 $merchant->append("created_at_formatted");
             }
 
-            $this->data = auth()->user()->merchants;
+            $this->data = $merchants;
         };
 
         return $this->callFunction($func);
@@ -40,6 +42,21 @@ class MerchantController extends ApiControllerV1
             $merchant->slug = Str::slug($merchant->name);
             $merchant->address = request("address");
             $merchant->save();
+
+            $this->data = $merchant;
+        };
+
+        return $this->callFunction($func);
+    }
+
+    public function show($id)
+    {
+        $func = function () use ($id) {
+            $merchant = UserMerchant::where("user_id", auth()->user()->id)->findOrFail($id);
+
+            if (!!$merchant) {
+                $merchant->append("created_at_formatted");
+            }
 
             $this->data = $merchant;
         };

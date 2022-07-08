@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Cart\UserCart;
 use App\Models\Merchant\UserMerchant;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -20,7 +21,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ["name", "email", "password"];
+    protected $fillable = ["name", "email", "phone", "password"];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,5 +33,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function merchants()
     {
         return $this->hasMany(UserMerchant::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(UserCart::class);
     }
 }

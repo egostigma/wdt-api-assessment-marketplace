@@ -28,7 +28,8 @@ class AuthController extends ApiControllerV1
         $func = function () {
             $this->validate(request(), [
                 "name" => "required",
-                "email" => "required|email",
+                "email" => "required|email|unique:users,email",
+                "phone" => "required|unique:users,phone",
                 "password" => "required|confirmed",
             ]);
 

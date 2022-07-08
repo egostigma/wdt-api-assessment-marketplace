@@ -161,14 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
 
-        //IVA (Intergrated Vendor Additional)
-        App\Providers\TerbilangServiceProvider::class,
-        Kordy\Ticketit\TicketitServiceProvider::class,
-        Collective\Remote\RemoteServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -178,10 +171,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -196,7 +186,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -232,14 +221,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-
-        //IVA (Intergrated Vendor Additional)
-        'Terbilang'   => App\Helpers\Terbilang\Terbilang::class ,
-        'SSH' => Collective\Remote\RemoteFacade::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
     ],
 
 ];
