@@ -1,6 +1,7 @@
 # Arguments defined in docker-compose.yml
 ARG NODE_VERSION
 ARG PHP_VERSION
+ARG PORT
 
 FROM node:${NODE_VERSION} AS node
 FROM php:${PHP_VERSION}-fpm
@@ -67,10 +68,9 @@ COPY --chown=www:www . /var/www
 # Change current user to www
 USER www
 
-# # Expose port 9000 and start php-fpm server
-# EXPOSE 9000
-# CMD ["php-fpm"]
-
-
-CMD php artisan serve --host=0.0.0.0 --port $PORT
+# Expose port 9000 and start php-fpm server
 EXPOSE $PORT
+CMD ["php-fpm"]
+
+# CMD php artisan serve --host=0.0.0.0 --port $PORT
+# EXPOSE $PORT
