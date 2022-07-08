@@ -51,7 +51,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "${DB_LOCAL_PORT:-3307}:${DB_PORT:-3306}"
+      - "${DB_LOCAL_PORT:-3306}:${DB_PORT:-3306}"
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD:-secret}"
       MYSQL_DATABASE: "${DB_DATABASE:-wdt-api-assessment-marketplace}"

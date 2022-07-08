@@ -51,7 +51,8 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY . /var/www
 
 # Install dependencies
-RUN composer install
+RUN composer update
+RUN composer install --optimize-autoloader --no-dev
 RUN npm install
 
 # Clean the image
