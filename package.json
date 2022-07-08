@@ -3,7 +3,7 @@
     "scripts": {
         "format:php": "prettier --config=.prettierrc --write --parser=php",
         "format:controllers": "npm run format:php ./app/Http/Controllers/**/*.php",
-        "heroku-build": "php artisan migrate && php artisan cache:clear && chmod -R 777 public"
+        "heroku-build": "php artisan migrate && php artisan cache:clear && chmod -R 755 public"
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.18.9",
