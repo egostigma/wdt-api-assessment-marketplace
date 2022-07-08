@@ -51,8 +51,8 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY . /var/www
 
 # Install dependencies
-# RUN composer install
-# RUN npm install
+RUN composer install
+RUN npm install
 
 # Clean the image
 RUN apt-get remove -qq -y pkg-config build-essential \
