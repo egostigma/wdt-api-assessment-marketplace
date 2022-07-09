@@ -44,7 +44,8 @@
             "php artisan clear-compiled",
             "php artisan optimize",
             "chmod -R 755 public",
-            "chmod -R 755 storage"
+            "chmod -R 755 storage",
+            "php artisan passport:keys"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
