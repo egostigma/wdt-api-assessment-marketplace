@@ -16,9 +16,11 @@ class UserMerchantProduct extends Model
 
     public function scopeOtherMerchants()
     {
-        return $this->whereHas("merchant", function ($query) {
-            $query->where("user_id", "!=", auth()->user()->id);
-        });
+        if (!!auth()->user()) {
+            return $this->whereHas("merchant", function ($query) {
+                $query->where("user_id", "!=", auth()->user()->id);
+            });
+        }
     }
 
     public function merchant()

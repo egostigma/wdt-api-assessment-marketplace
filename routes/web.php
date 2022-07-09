@@ -60,28 +60,28 @@ $router->group(["prefix" => "api", "as" => "api"], function () use ($router) {
                     $router->delete("/order/{order_id}", ["as" => "delete", "uses" => "MerchantOrderController@delete"]);
                 });
             });
+
+            $router->group(["prefix" => "cart", "namespace" => "Cart", "as" => "cart"], function () use ($router) {
+                $router->get("/", ["as" => "index", "uses" => "CartController@index"]);
+                $router->post("/", ["as" => "store", "uses" => "CartController@store"]);
+                $router->get("/{id}", ["as" => "show", "uses" => "CartController@show"]);
+                $router->put("/{id}", ["as" => "update", "uses" => "CartController@update"]);
+                $router->delete("/{id}", ["as" => "delete", "uses" => "CartController@delete"]);
+            });
+
+            $router->group(["prefix" => "order", "namespace" => "Order", "as" => "order"], function () use ($router) {
+                $router->get("/", ["as" => "index", "uses" => "OrderController@index"]);
+                $router->post("/", ["as" => "store", "uses" => "OrderController@store"]);
+                $router->get("/{id}", ["as" => "show", "uses" => "OrderController@show"]);
+                $router->put("/{id}", ["as" => "update", "uses" => "OrderController@update"]);
+                $router->delete("/{id}", ["as" => "delete", "uses" => "OrderController@delete"]);
+            });
         });
 
         $router->group(["prefix" => "product", "namespace" => "Product", "as" => "product"], function () use ($router) {
             $router->get("/", ["as" => "index", "uses" => "ProductController@index"]);
             $router->get("/{id}", ["as" => "show", "uses" => "ProductController@show"]);
             $router->get("/{id}/similar", ["as" => "show", "uses" => "ProductController@similar"]);
-        });
-
-        $router->group(["prefix" => "cart", "namespace" => "Cart", "as" => "cart"], function () use ($router) {
-            $router->get("/", ["as" => "index", "uses" => "CartController@index"]);
-            $router->post("/", ["as" => "store", "uses" => "CartController@store"]);
-            $router->get("/{id}", ["as" => "show", "uses" => "CartController@show"]);
-            $router->put("/{id}", ["as" => "update", "uses" => "CartController@update"]);
-            $router->delete("/{id}", ["as" => "delete", "uses" => "CartController@delete"]);
-        });
-
-        $router->group(["prefix" => "order", "namespace" => "Order", "as" => "order"], function () use ($router) {
-            $router->get("/", ["as" => "index", "uses" => "OrderController@index"]);
-            $router->post("/", ["as" => "store", "uses" => "OrderController@store"]);
-            $router->get("/{id}", ["as" => "show", "uses" => "OrderController@show"]);
-            $router->put("/{id}", ["as" => "update", "uses" => "OrderController@update"]);
-            $router->delete("/{id}", ["as" => "delete", "uses" => "OrderController@delete"]);
         });
     });
 });
