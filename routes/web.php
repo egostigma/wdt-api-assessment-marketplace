@@ -20,7 +20,7 @@ $router->get("/", function () use ($router) {
 });
 
 
-$router->group(["prefix" => "api", "as" => "api"], function () use ($router) {
+$router->group(["middleware" => "cors", "prefix" => "api", "as" => "api"], function () use ($router) {
     $router->group(["prefix" => "v1", "namespace" => "v1", "as" => "v1"], function () use ($router) {
         $router->group(["prefix" => "auth", "namespace" => "Auth", "as" => "auth"], function () use ($router) {
             $router->post("register", ["as" => "register", "uses" => "AuthController@register"]);
